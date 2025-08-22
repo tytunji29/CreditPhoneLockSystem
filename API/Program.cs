@@ -1,4 +1,4 @@
-using Infrastructure.Data;
+﻿using Infrastructure.Data;
 using Infrastructure.Data.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,24 +14,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();                        // Generates swagger.json
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Credit Phone Lock System API v1");
-        c.RoutePrefix = string.Empty; // Swagger UI at root (http://localhost:5000)
-    });
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Credit Phone Lock System API v1");
+    c.RoutePrefix = string.Empty; // 👈 makes Swagger UI the landing page
+});
 
-    // Keep HTTPS redirection for local dev
-    app.UseHttpsRedirection();
-}
-else
-{
-    // In Render, disable HTTPS redirect (Render terminates SSL for you)
-    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-    app.Urls.Add($"http://*:{port}");
-}
+//    app.UseHttpsRedirection();
+//}
+
 
 var summaries = new[]
 {
