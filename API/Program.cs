@@ -1,4 +1,4 @@
-
+using Infrastructure.Data;
 using Infrastructure.Data.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,9 +22,16 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Credit Phone Lock System API v1");
         c.RoutePrefix = string.Empty; // Swagger UI at root (http://localhost:5000)
     });
-}
 
-app.UseHttpsRedirection();
+    // Keep HTTPS redirection for local dev
+    app.UseHttpsRedirection();
+}
+else
+{
+    // In Render, disable HTTPS redirect (Render terminates SSL for you)
+    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+    app.Urls.Add($"http://*:{port}");
+}
 
 var summaries = new[]
 {
