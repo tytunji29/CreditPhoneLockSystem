@@ -8,6 +8,7 @@ namespace Infrastructure.Data
         public required string Name { get; set; }
         public required string PhoneNumber { get; set; }
         public required string Email { get; set; }
+
         public required string IMEI { get; set; }  // Unique
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
