@@ -9,6 +9,6 @@ namespace Infrastructure.Data
         public DateTime LastCheckedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation
-        public required Customer Customer { get; set; }
+        public Customer Customer { get; set; }
     }
 }

@@ -917,16 +917,6 @@
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
-      },
-      "Domain/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v9.0",
-        "compile": {
-          "bin/placeholder/Domain.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Domain.dll": {}
-        }
       }
     }
   },
@@ -2814,16 +2804,10 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "Domain/1.0.0": {
-      "type": "project",
-      "path": "../Domain/Domain.csproj",
-      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.8",
@@ -2862,11 +2846,7 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {
-            "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Domain\\Domain.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

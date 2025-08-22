@@ -776,6 +776,9 @@
       },
       "System.Threading.Channels/7.0.0": {},
       "Domain/1.0.0": {
+        "dependencies": {
+          "Infrastructure": "1.0.0"
+        },
         "runtime": {
           "Domain.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -785,7 +788,6 @@
       },
       "Infrastructure/1.0.0": {
         "dependencies": {
-          "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.8",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
         },

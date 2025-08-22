@@ -1,4 +1,7 @@
-﻿using Infrastructure.Data;
+﻿using Domain.Dto;
+using Domain.Services;
+using Infrastructure;
+using Infrastructure.Data;
 using Infrastructure.Data.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +13,8 @@ builder.Services.AddSwaggerGen();            // Swagger generator
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,29 +31,15 @@ app.UseSwaggerUI(c =>
 //}
 
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
 
-app.MapGet("/weatherforecast", () =>
+app.MapPost("/AddCustomer", async (CreateCustomerDto dto, ICustomerService customerService) =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var result = await customerService.CreateCustomerAsync(dto);
+    if(result.Status==false)
+        return Results.InternalServerError(result.Message);
+    return Results.Ok(result);
 })
-.WithName("GetWeatherForecast")
+.WithName("AddCustomer")
 .WithOpenApi();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

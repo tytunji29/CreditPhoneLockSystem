@@ -142,7 +142,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Infrastructure\\Infrastructure.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -208,11 +212,7 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {
-              "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Domain\\Domain.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {

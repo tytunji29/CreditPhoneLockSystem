@@ -100,6 +100,9 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("PaidAmount")
                         .HasColumnType("numeric");
 
+                    b.Property<int>("Period")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
@@ -125,6 +128,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("boolean");
 
                     b.Property<Guid>("LoanId")
                         .HasColumnType("uuid");

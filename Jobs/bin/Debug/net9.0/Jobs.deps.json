@@ -175,17 +175,8 @@
           }
         }
       },
-      "Domain/1.0.0": {
-        "runtime": {
-          "Domain.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "Infrastructure/1.0.0": {
         "dependencies": {
-          "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.8",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4"
         },
@@ -308,11 +299,6 @@
       "sha512": "sha512-mw5vcY2IEc7L+IeGrxpp/J5OSnCcjkjAgJYCm/eD52wpZze8zsSifdqV7zXslSMmfJG2iIUGZyo3KuDtEFKwMQ==",
       "path": "npgsql.entityframeworkcore.postgresql/9.0.4",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512"
-    },
-    "Domain/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "Infrastructure/1.0.0": {
       "type": "project",

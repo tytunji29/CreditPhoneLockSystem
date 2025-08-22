@@ -5,22 +5,29 @@
     "version": "1.0"
   },
   "paths": {
-    "/weatherforecast": {
-      "get": {
+    "/AddCustomer": {
+      "post": {
         "tags": [
           "API"
         ],
-        "operationId": "GetWeatherForecast",
+        "operationId": "AddCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCustomerDto"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
+                  "$ref": "#/components/schemas/Void"
                 }
               }
             }
@@ -31,27 +38,42 @@
   },
   "components": {
     "schemas": {
-      "WeatherForecast": {
+      "CreateCustomerDto": {
         "type": "object",
         "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "summary": {
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "temperatureF": {
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "imei": {
+            "type": "string",
+            "nullable": true
+          },
+          "amountPaid": {
+            "type": "number",
+            "format": "double"
+          },
+          "amountToBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "numberOfRepaymentMonths": {
             "type": "integer",
-            "format": "int32",
-            "readOnly": true
+            "format": "int32"
           }
         },
+        "additionalProperties": false
+      },
+      "Void": {
+        "type": "object",
         "additionalProperties": false
       }
     }

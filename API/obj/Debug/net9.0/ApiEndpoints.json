@@ -1,21 +1,25 @@
 [
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec__DisplayClass0_0",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__2",
-    "RelativePath": "weatherforecast",
-    "HttpMethod": "GET",
+    "ContainingType": "Program\u002B\u003C\u003Ec",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_2",
+    "RelativePath": "AddCustomer",
+    "HttpMethod": "POST",
     "IsController": false,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Domain.Dto.CreateCustomerDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "WeatherForecast[]",
-        "MediaTypes": [
-          "application/json"
-        ],
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "EndpointName": "AddCustomer"
   }
 ]
