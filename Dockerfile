@@ -1,16 +1,23 @@
-# 1. Use official .NET 9 SDK for build
+# 1. Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
+# Copy solution file
+COPY ["CreditPhoneLockSystem.sln", "."]
+
+# Copy project files
 COPY ["API/API.csproj", "API/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 COPY ["Jobs/Jobs.csproj", "Jobs/"]
-COPY ["CreditPhoneLockSystem.sln", "."]
 
-RUN dotnet restore "API/API.csproj"
+# Restore dependencies
+RUN dotnet restore "CreditPhoneLockSystem.sln"
 
+# Copy everything
 COPY . .
+
+# Build and publish API
 WORKDIR "/src/API"
 RUN dotnet publish "API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
