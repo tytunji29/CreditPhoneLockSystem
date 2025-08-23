@@ -27,6 +27,13 @@ builder.Services.AddHangfireServer();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICustomerService, CustomerService>(); 
 builder.Services.AddScoped<ILoanJobService, LoanJobService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+});
 
 var app = builder.Build();
 // Hangfire Dashboard (for monitoring jobs)
