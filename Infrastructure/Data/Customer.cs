@@ -1,5 +1,7 @@
 
 
+using System.Text.Json.Serialization;
+
 namespace Infrastructure.Data;
 
 public class Customer

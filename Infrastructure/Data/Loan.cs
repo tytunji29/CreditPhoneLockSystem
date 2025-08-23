@@ -12,6 +12,7 @@ namespace Infrastructure.Data
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation
+
         public Customer Customer { get; set; }
         public required ICollection<RepaymentSchedule> RepaymentSchedules { get; set; }
     }

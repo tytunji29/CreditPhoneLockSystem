@@ -10,5 +10,6 @@ public class RepaymentSchedule
     public required string Status { get; set; }  // Pending, Paid, Overdue
 
     // Navigation
+
     public Loan Loan { get; set; }
 }

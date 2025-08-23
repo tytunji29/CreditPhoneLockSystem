@@ -1,6 +1,8 @@
+using System.Text.Json.Serialization;
+
 namespace Infrastructure.Data
 {
-     public class DeviceStatus
+    public class DeviceStatus
     {
         public Guid Id { get; set; }  // PK, UUID
         public Guid CustomerId { get; set; }  // PK, UUID
@@ -8,7 +10,6 @@ namespace Infrastructure.Data
         public bool IsLocked { get; set; }
         public DateTime LastCheckedAt { get; set; } = DateTime.UtcNow;
 
-        // Navigation
         public Customer Customer { get; set; }
     }
 }

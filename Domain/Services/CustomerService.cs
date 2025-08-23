@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Dto;
+﻿using Domain.Dto;
 using Infrastructure;
 using Infrastructure.Data;
 
 namespace Domain.Services;
-
 public interface ICustomerService
 {
     Task<ReturnObject> CreateCustomerAsync(CreateCustomerDto dto);
     Task<ReturnObject> GetAllCustomersAsync();
     Task<ReturnObject?> GetCustomerByIdAsync(Guid id);
+    Task<ReturnObject?> GetCustomerByIMEIAsync(string imei);
+    Task<ReturnObject?> GetDeviceStatusByIMEIAsync(string imei);
 }
 public class CustomerService : ICustomerService
 {
@@ -90,7 +86,7 @@ public class CustomerService : ICustomerService
             await transaction.CommitAsync();
 
             // 6. Return Customer DTO
-            var rec= new CustomerResponseDto
+            var rec = new CustomerResponseDto
             {
                 Id = customer.Id,
                 Name = customer.Name,
@@ -103,12 +99,12 @@ public class CustomerService : ICustomerService
                     Id = rs.Id,
                     DueDate = rs.DueDate,
                     Amount = rs.Amount,
-                    LoanId=rs.LoanId,
-                    CreatedAt=loan.CreatedAt,
+                    LoanId = rs.LoanId,
+                    CreatedAt = loan.CreatedAt,
                     Status = rs.Status
                 }).ToList()
             };
-            return new ReturnObject { Data=rec, Message = "Customer created successfully", Status = true };
+            return new ReturnObject { Data = rec, Message = "Customer created successfully", Status = true };
         }
         catch
         {
@@ -121,7 +117,7 @@ public class CustomerService : ICustomerService
     {
         var customers = await _unitOfWork.Customers.GetAllAsync();
 
-        var rec= customers.Select(c => new CustomerResponseDto
+        var rec = customers.Select(c => new CustomerResponseDto
         {
             Id = c.Id,
             Name = c.Name,
@@ -141,9 +137,9 @@ public class CustomerService : ICustomerService
     public async Task<ReturnObject> GetCustomerByIdAsync(Guid id)
     {
         var customer = await _unitOfWork.Customers.GetByIdAsync(id);
-        if (customer == null) return new ReturnObject { Status=false,Message="No Record Found", Data=null};
+        if (customer == null) return new ReturnObject { Status = false, Message = "No Record Found", Data = null };
 
-        var rec= new CustomerResponseDto
+        var rec = new CustomerResponseDto
         {
             Id = customer.Id,
             Name = customer.Name,
@@ -159,6 +155,52 @@ public class CustomerService : ICustomerService
             Status = true
         };
     }
+
+    public async Task<ReturnObject?> GetCustomerByIMEIAsync(string imei)
+    {
+        var customer = await _unitOfWork.Customers.GetByIMEIAsync(imei);
+        if (customer == null)
+            return new ReturnObject { Status = false, Message = "No Record Found", Data = null };
+        var rec = new CustomerResponseDto
+        {
+            Id = customer.Id,
+            Name = customer.Name,
+            PhoneNumber = customer.PhoneNumber,
+            Email = customer.Email,
+            IMEI = customer.IMEI,
+            CreatedAt = customer.CreatedAt,
+            Repay = customer.Loans.SelectMany(l => l.RepaymentSchedules)
+                .Select(rs => new RepaymentScheduleResponseDto
+                {
+                    Id = rs.Id,
+                    DueDate = rs.DueDate,
+                    Amount = rs.Amount,
+                    LoanId = rs.LoanId,
+                    CreatedAt = customer.CreatedAt,
+                    Status = rs.Status
+                }).ToList()
+        };
+        return new ReturnObject
+        {
+            Data = rec,
+            Message = "Customer retrieved successfully",
+            Status = true
+        };
+    }
+    public async Task<ReturnObject?> GetDeviceStatusByIMEIAsync(string imei)
+    {
+        var customer = await _unitOfWork.Customers.GetDeviceStatusIMEIAsync(imei);
+        if (customer == null)
+            return new ReturnObject { Status = false, Message = "No Record Found", Data = null };
+   
+        return new ReturnObject
+        {
+            Data = customer.IsLocked,
+            Message = "Device retrieved successfully",
+            Status = true
+        };
+    }
+
     public static class LoanStatus
     {
         public const string Active = "Active";

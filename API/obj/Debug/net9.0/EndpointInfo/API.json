@@ -34,6 +34,66 @@
           }
         }
       }
+    },
+    "/customers/{imei}": {
+      "get": {
+        "tags": [
+          "API"
+        ],
+        "operationId": "GetCustomerByIMEI",
+        "parameters": [
+          {
+            "name": "imei",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DeviceStatus/{imei}": {
+      "get": {
+        "tags": [
+          "API"
+        ],
+        "operationId": "DeviceStatus",
+        "parameters": [
+          {
+            "name": "imei",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

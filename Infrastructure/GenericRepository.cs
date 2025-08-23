@@ -8,6 +8,8 @@ public interface IGenericRepository<T> where T : class
     Task<T?> GetByIdAsync(Guid id);
     Task<IEnumerable<T>> GetAllAsync();
     Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+    Task<T?> GetByPropertyAsync(Expression<Func<T, bool>> predicate);
+    IQueryable<T> Query();
 
     Task AddAsync(T entity);
     Task AddListAsync(List<T> entity);
@@ -24,6 +26,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         _context = context;
         _dbSet = _context.Set<T>();
     }
+    public IQueryable<T> Query() => _dbSet.AsQueryable();
 
     public async Task<T?> GetByIdAsync(Guid id) => await _dbSet.FindAsync(id);
 
@@ -31,6 +34,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate) =>
         await _dbSet.Where(predicate).ToListAsync();
+    public async Task<T?> GetByPropertyAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await _dbSet.FirstOrDefaultAsync(predicate);
+    }
 
     public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
     public async Task AddListAsync(List<T> entity) => await _dbSet.AddRangeAsync(entity);
