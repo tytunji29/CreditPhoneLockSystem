@@ -36,6 +36,9 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+// Enable CORS
+app.UseCors("AllowFrontend");
+
 // Hangfire Dashboard (for monitoring jobs)
 app.UseHangfireDashboard("/hangfire");
 //Add swagger middleware
