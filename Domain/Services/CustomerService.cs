@@ -3,13 +3,16 @@ using Infrastructure;
 using Infrastructure.Data;
 
 namespace Domain.Services;
+
 public interface ICustomerService
 {
     Task<ReturnObject> CreateCustomerAsync(CreateCustomerDto dto);
+    Task<ReturnObject> GetAllDefaultersAsync();
     Task<ReturnObject> GetAllCustomersAsync();
     Task<ReturnObject?> GetCustomerByIdAsync(Guid id);
     Task<ReturnObject?> GetCustomerByIMEIAsync(string imei);
     Task<ReturnObject?> GetDeviceStatusByIMEIAsync(string imei);
+    Task<ReturnObject?> FlagStatusByIMEI(string imei, int source);
 }
 public class CustomerService : ICustomerService
 {
@@ -109,8 +112,26 @@ public class CustomerService : ICustomerService
         catch
         {
             await transaction.RollbackAsync();
-            throw;
+            return new ReturnObject { Data = null, Message = "An Error Occured", Status = false };
         }
+    }
+
+    public async Task<ReturnObject?> FlagStatusByIMEI(string imei, int source)
+    {
+        switch (source)
+        {
+            case 1:
+                // Lock the device
+                await _unitOfWork.Customers.FlagStatus(imei, true);
+                break;
+            case 2:
+                // Unlock the device
+                await _unitOfWork.Customers.FlagStatus(imei, false);
+                break;
+            default: return new ReturnObject { Status = false, Message = "Invalid source", Data = null };
+
+        }
+        return new ReturnObject { Status = true, Message = "Status Flagged Successfully", Data = null };
     }
 
     public async Task<ReturnObject> GetAllCustomersAsync()
@@ -125,6 +146,36 @@ public class CustomerService : ICustomerService
             Email = c.Email,
             IMEI = c.IMEI,
             CreatedAt = c.CreatedAt
+        });
+        return new ReturnObject
+        {
+            Data = rec,
+            Message = "Customers retrieved successfully",
+            Status = true
+        };
+    }
+    public async Task<ReturnObject> GetAllDefaultersAsync()
+    {
+        var customers = await _unitOfWork.Customers.GetDefaulterAsync();
+
+        var rec = customers.Select(c => new CustomerResponseDto
+        {
+            Id = c.Id,
+            Name = c.Name,
+            PhoneNumber = c.PhoneNumber,
+            Email = c.Email,
+            IMEI = c.IMEI,
+            CreatedAt = c.CreatedAt,
+            Repay = c.Loans.SelectMany(l => l.RepaymentSchedules)
+                .Select(rs => new RepaymentScheduleResponseDto
+                {
+                    Id = rs.Id,
+                    DueDate = rs.DueDate,
+                    Amount = rs.Amount,
+                    LoanId = rs.LoanId,
+                    CreatedAt = c.CreatedAt,
+                    Status = rs.Status
+                }).ToList()
         });
         return new ReturnObject
         {
@@ -192,7 +243,7 @@ public class CustomerService : ICustomerService
         var customer = await _unitOfWork.Customers.GetDeviceStatusIMEIAsync(imei);
         if (customer == null)
             return new ReturnObject { Status = false, Message = "No Record Found", Data = null };
-   
+
         return new ReturnObject
         {
             Data = customer.IsLocked,

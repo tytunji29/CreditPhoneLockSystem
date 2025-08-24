@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region Configuration
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();  // Needed for Swagger
 builder.Services.AddSwaggerGen();            // Swagger generator
@@ -37,7 +38,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Credit Phone Lock System API v1");
     c.RoutePrefix = string.Empty; // 👈 makes Swagger UI the landing page
 });
-
+#endregion
 #region EndPoints
 
 app.MapPost("/AddCustomer", async (CreateCustomerDto dto, ICustomerService customerService) =>
@@ -58,6 +59,15 @@ app.MapGet("/customers/{imei}", async (string imei, ICustomerService customerSer
 })
 .WithName("GetCustomerByIMEI")
 .WithOpenApi();
+app.MapGet("/defaulters", async (ICustomerService customerService) =>
+{
+    var result = await customerService.GetAllDefaultersAsync();
+    if (!result.Status || result.Data == null)
+        return Results.NotFound(result.Message); // 404 if not found
+    return Results.Ok(result);
+})
+.WithName("GetAllDefaulters")
+.WithOpenApi();
 
 app.MapGet("/DeviceStatus/{imei}", async (string imei, ICustomerService customerService) =>
 {
@@ -68,6 +78,26 @@ app.MapGet("/DeviceStatus/{imei}", async (string imei, ICustomerService customer
 })
 .WithName("DeviceStatus")
 .WithOpenApi();
+
+app.MapPut("/LockDevice/{imei}", async (string imei, ICustomerService customerService) =>
+{
+    var result = await customerService.FlagStatusByIMEI(imei,1);
+    if (!result.Status)
+        return Results.NotFound(result.Message); // 404 if not found
+    return Results.Ok(result);
+})
+.WithName("LockDevice")
+.WithOpenApi();
+app.MapPut("/UnlockDevice/{imei}", async (string imei, ICustomerService customerService) =>
+{
+    var result = await customerService.FlagStatusByIMEI(imei,2);
+    if (!result.Status)
+        return Results.NotFound(result.Message); // 404 if not found
+    return Results.Ok(result);
+})
+.WithName("UnlockDevice")
+.WithOpenApi();
+
 #endregion
 
 // Register recurring jobs
