@@ -89,7 +89,7 @@ app.MapGet("/DeviceStatus/{imei}", async (string imei, ICustomerService customer
 .WithName("DeviceStatus")
 .WithOpenApi();
 
-app.MapPut("/LockDevice/{imei}", async (string imei, ICustomerService customerService) =>
+app.MapPost("/LockDevice/{imei}", async (string imei, ICustomerService customerService) =>
 {
     var result = await customerService.FlagStatusByIMEI(imei,1);
     if (!result.Status)
@@ -98,7 +98,7 @@ app.MapPut("/LockDevice/{imei}", async (string imei, ICustomerService customerSe
 })
 .WithName("LockDevice")
 .WithOpenApi();
-app.MapPut("/UnlockDevice/{imei}", async (string imei, ICustomerService customerService) =>
+app.MapPost("/UnlockDevice/{imei}", async (string imei, ICustomerService customerService) =>
 {
     var result = await customerService.FlagStatusByIMEI(imei,2);
     if (!result.Status)
