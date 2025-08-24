@@ -143,6 +143,7 @@ public class CustomerService : ICustomerService
             Id = c.Id,
             Name = c.Name,
             PhoneNumber = c.PhoneNumber,
+            IsLocked = c.DeviceStatus?.IsLocked,
             Email = c.Email,
             IMEI = c.IMEI,
             CreatedAt = c.CreatedAt
@@ -166,6 +167,7 @@ public class CustomerService : ICustomerService
             Email = c.Email,
             IMEI = c.IMEI,
             CreatedAt = c.CreatedAt,
+            IsLocked = c.DeviceStatus?.IsLocked,
             Repay = c.Loans.SelectMany(l => l.RepaymentSchedules)
                 .Select(rs => new RepaymentScheduleResponseDto
                 {
@@ -196,6 +198,7 @@ public class CustomerService : ICustomerService
             Name = customer.Name,
             PhoneNumber = customer.PhoneNumber,
             Email = customer.Email,
+            IsLocked = customer.DeviceStatus?.IsLocked,
             IMEI = customer.IMEI,
             CreatedAt = customer.CreatedAt
         };
@@ -218,6 +221,7 @@ public class CustomerService : ICustomerService
             Name = customer.Name,
             PhoneNumber = customer.PhoneNumber,
             Email = customer.Email,
+            IsLocked = customer.DeviceStatus?.IsLocked,
             IMEI = customer.IMEI,
             CreatedAt = customer.CreatedAt,
             Repay = customer.Loans.SelectMany(l => l.RepaymentSchedules)
