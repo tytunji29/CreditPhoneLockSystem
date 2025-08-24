@@ -9,10 +9,10 @@ public interface ICustomerService
     Task<ReturnObject> CreateCustomerAsync(CreateCustomerDto dto);
     Task<ReturnObject> GetAllDefaultersAsync();
     Task<ReturnObject> GetAllCustomersAsync();
-    Task<ReturnObject?> GetCustomerByIdAsync(Guid id);
-    Task<ReturnObject?> GetCustomerByIMEIAsync(string imei);
-    Task<ReturnObject?> GetDeviceStatusByIMEIAsync(string imei);
-    Task<ReturnObject?> FlagStatusByIMEI(string imei, int source);
+    Task<ReturnObject> GetCustomerByIdAsync(Guid id);
+    Task<ReturnObject> GetCustomerByIMEIAsync(string imei);
+    Task<ReturnObject> GetDeviceStatusByIMEIAsync(string imei);
+    Task<ReturnObject> FlagStatusByIMEI(string imei, int source);
 }
 public class CustomerService : ICustomerService
 {
@@ -116,7 +116,7 @@ public class CustomerService : ICustomerService
         }
     }
 
-    public async Task<ReturnObject?> FlagStatusByIMEI(string imei, int source)
+    public async Task<ReturnObject> FlagStatusByIMEI(string imei, int source)
     {
         switch (source)
         {
@@ -207,7 +207,7 @@ public class CustomerService : ICustomerService
         };
     }
 
-    public async Task<ReturnObject?> GetCustomerByIMEIAsync(string imei)
+    public async Task<ReturnObject> GetCustomerByIMEIAsync(string imei)
     {
         var customer = await _unitOfWork.Customers.GetByIMEIAsync(imei);
         if (customer == null)
@@ -238,7 +238,7 @@ public class CustomerService : ICustomerService
             Status = true
         };
     }
-    public async Task<ReturnObject?> GetDeviceStatusByIMEIAsync(string imei)
+    public async Task<ReturnObject> GetDeviceStatusByIMEIAsync(string imei)
     {
         var customer = await _unitOfWork.Customers.GetDeviceStatusIMEIAsync(imei);
         if (customer == null)
