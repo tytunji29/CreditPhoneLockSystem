@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{870DAF48-13F1-4803-85FC-73B93FC3394C}|API\\API.csproj|c:\\users\\hp elitebook 840 g2\\desktop\\ty\\creditphonelocksystem\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{870DAF48-13F1-4803-85FC-73B93FC3394C}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A52F831E-F2C5-45A3-A3C7-C0FB7241567A}|Infrastructure\\Infrastructure.csproj|c:\\users\\hp elitebook 840 g2\\desktop\\ty\\creditphonelocksystem\\infrastructure\\data\\repaymentschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A52F831E-F2C5-45A3-A3C7-C0FB7241567A}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\repaymentschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7F7E7048-CC42-400B-9734-4248B9EDB3DD}|Domain\\Domain.csproj|c:\\users\\hp elitebook 840 g2\\desktop\\ty\\creditphonelocksystem\\domain\\services\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7F7E7048-CC42-400B-9734-4248B9EDB3DD}|Domain\\Domain.csproj|solutionrelative:domain\\services\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{870DAF48-13F1-4803-85FC-73B93FC3394C}|API\\API.csproj|c:\\users\\hp elitebook 840 g2\\desktop\\ty\\creditphonelocksystem\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{870DAF48-13F1-4803-85FC-73B93FC3394C}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A52F831E-F2C5-45A3-A3C7-C0FB7241567A}|Infrastructure\\Infrastructure.csproj|c:\\users\\hp elitebook 840 g2\\desktop\\ty\\creditphonelocksystem\\infrastructure\\data\\devicestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,7 +81,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 24,
+          "SelectedChildIndex": 25,
           "Children": [
             {
               "$type": "Bookmark",
@@ -165,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CustomerService.cs",
               "DocumentMoniker": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Domain\\Services\\CustomerService.cs",
               "RelativeDocumentMoniker": "Domain\\Services\\CustomerService.cs",
@@ -173,12 +173,11 @@
               "RelativeToolTip": "Domain\\Services\\CustomerService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T18:57:20.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T18:57:20.797Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CustomerDtos.cs",
               "DocumentMoniker": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Domain\\Dto\\CustomerDtos.cs",
               "RelativeDocumentMoniker": "Domain\\Dto\\CustomerDtos.cs",
@@ -186,12 +185,11 @@
               "RelativeToolTip": "Domain\\Dto\\CustomerDtos.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T18:49:56.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T18:49:56.071Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CustomerRepository.cs",
               "DocumentMoniker": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Infrastructure\\CustomerRepository.cs",
               "RelativeDocumentMoniker": "Infrastructure\\CustomerRepository.cs",
@@ -199,8 +197,7 @@
               "RelativeToolTip": "Infrastructure\\CustomerRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T21:11:55.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T21:11:55.629Z"
             },
             {
               "$type": "Document",
@@ -212,12 +209,11 @@
               "RelativeToolTip": "Infrastructure\\Data\\Loan.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA0wA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T19:08:07.542Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T19:08:07.542Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "RepaymentSchedule.cs",
               "DocumentMoniker": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Infrastructure\\Data\\RepaymentSchedule.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Data\\RepaymentSchedule.cs",
@@ -225,18 +221,17 @@
               "RelativeToolTip": "Infrastructure\\Data\\RepaymentSchedule.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T18:52:01.599Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T18:52:01.599Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\API\\Program.cs",
               "RelativeDocumentMoniker": "API\\Program.cs",
               "ToolTip": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\API\\Program.cs",
               "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AgIAACkAAABgmZmZmZknwDIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-22T17:39:49.331Z",
               "EditorCaption": ""
@@ -251,8 +246,7 @@
               "RelativeToolTip": "Infrastructure\\Data\\Customer.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAADwvxIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-23T08:15:03.691Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-23T08:15:03.691Z"
             },
             {
               "$type": "Document",
@@ -264,8 +258,7 @@
               "RelativeToolTip": "Infrastructure\\Data\\DeviceStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T13:43:05.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T13:43:05.638Z"
             },
             {
               "$type": "Document",
@@ -277,8 +270,7 @@
               "RelativeToolTip": "Domain\\Dto\\RepaymentScheduleDtos.cs",
               "ViewState": "AgIAAAgAAAAwMzMzMzM7wBAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T18:52:21.463Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T18:52:21.463Z"
             },
             {
               "$type": "Document",
@@ -290,8 +282,7 @@
               "RelativeToolTip": "Domain\\ReturnObject.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T20:29:14.654Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T20:29:14.654Z"
             },
             {
               "$type": "Document",
@@ -303,8 +294,7 @@
               "RelativeToolTip": "Infrastructure\\Data\\AppDbContext\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T13:42:06.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T13:42:06.058Z"
             },
             {
               "$type": "Document",
@@ -316,8 +306,7 @@
               "RelativeToolTip": "Infrastructure\\UnitOfWork.cs",
               "ViewState": "AgIAAAMAAADAzMzMzMwqwA0AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T18:20:45.663Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T18:20:45.663Z"
             },
             {
               "$type": "Document",

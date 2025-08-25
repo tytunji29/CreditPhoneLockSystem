@@ -26,6 +26,7 @@ builder.Services.AddHangfireServer();
 //Add repositories and services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICustomerService, CustomerService>(); 
+builder.Services.AddScoped<IAdminService, AdminService>(); 
 builder.Services.AddScoped<ILoanJobService, LoanJobService>();
 builder.Services.AddCors(options =>
 {
@@ -51,6 +52,24 @@ app.UseSwaggerUI(c =>
 #endregion
 #region EndPoints
 
+app.MapPost("/LoginUser", async (LoginDto dto, IAdminService adminService) =>
+{
+    var result = await adminService.LoginAsync( dto.Email, dto.Password);
+    if (result.Status == false)
+        return Results.InternalServerError(result.Message);
+    return Results.Ok(result);
+})
+.WithName("LoginUser")
+.WithOpenApi();
+app.MapPost("/AddAdminUser", async (RegisterDto dto, IAdminService adminService) =>
+{
+    var result = await adminService.RegisterAsync(dto.FullName, dto.Email, dto.Password);
+    if (result.Status == false)
+        return Results.InternalServerError(result.Message);
+    return Results.Ok(result);
+})
+.WithName("CreateAdminUser")
+.WithOpenApi();
 app.MapPost("/AddCustomer", async (CreateCustomerDto dto, ICustomerService customerService) =>
 {
     var result = await customerService.CreateCustomerAsync(dto);
@@ -89,7 +108,7 @@ app.MapGet("/DeviceStatus/{imei}", async (string imei, ICustomerService customer
 .WithName("DeviceStatus")
 .WithOpenApi();
 
-app.MapPost("/LockDevice/{imei}", async (string imei, ICustomerService customerService) =>
+app.MapPut("/LockDevice/{imei}", async (string imei, ICustomerService customerService) =>
 {
     var result = await customerService.FlagStatusByIMEI(imei,1);
     if (!result.Status)
@@ -98,7 +117,7 @@ app.MapPost("/LockDevice/{imei}", async (string imei, ICustomerService customerS
 })
 .WithName("LockDevice")
 .WithOpenApi();
-app.MapPost("/UnlockDevice/{imei}", async (string imei, ICustomerService customerService) =>
+app.MapPut("/UnlockDevice/{imei}", async (string imei, ICustomerService customerService) =>
 {
     var result = await customerService.FlagStatusByIMEI(imei,2);
     if (!result.Status)

@@ -13,6 +13,7 @@ public interface IUnitOfWork : IDisposable
 {
     ICustomerRepository Customers { get; }
     IGenericRepository<Loan> Loans { get; }
+    IGenericRepository<AdminUser> AdminUsers { get; }
     IGenericRepository<RepaymentSchedule> RepaymentSchedules { get; }
     IGenericRepository<DeviceStatus> DeviceStatuses { get; }
     Task<IDbContextTransaction> BeginTransactionAsync();
@@ -25,6 +26,7 @@ public interface IUnitOfWork : IDisposable
 
         public ICustomerRepository Customers { get; }
         public IGenericRepository<Loan> Loans { get; }
+        public IGenericRepository<AdminUser> AdminUsers { get; }
         public IGenericRepository<RepaymentSchedule> RepaymentSchedules { get; }
         public IGenericRepository<DeviceStatus> DeviceStatuses { get; }
 
@@ -33,6 +35,7 @@ public interface IUnitOfWork : IDisposable
             _context = context;
             Customers = new CustomerRepository(_context);
             Loans = new GenericRepository<Loan>(_context);
+            AdminUsers = new GenericRepository<AdminUser>(_context);
             RepaymentSchedules = new GenericRepository<RepaymentSchedule>(_context);
             DeviceStatuses = new GenericRepository<DeviceStatus>(_context);
         }

@@ -10,7 +10,7 @@ public interface IGenericRepository<T> where T : class
     Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
     Task<T?> GetByPropertyAsync(Expression<Func<T, bool>> predicate);
     IQueryable<T> Query();
-
+    Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
     Task AddAsync(T entity);
     Task AddListAsync(List<T> entity);
     void Update(T entity);
@@ -31,6 +31,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task<T?> GetByIdAsync(Guid id) => await _dbSet.FindAsync(id);
 
     public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
+
+public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate) =>
+    await _dbSet.AnyAsync(predicate);
 
     public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate) =>
         await _dbSet.Where(predicate).ToListAsync();

@@ -5,6 +5,66 @@
     "version": "1.0"
   },
   "paths": {
+    "/LoginUser": {
+      "post": {
+        "tags": [
+          "API"
+        ],
+        "operationId": "LoginUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/AddAdminUser": {
+      "post": {
+        "tags": [
+          "API"
+        ],
+        "operationId": "CreateAdminUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/AddCustomer": {
       "post": {
         "tags": [
@@ -65,6 +125,26 @@
         }
       }
     },
+    "/defaulters": {
+      "get": {
+        "tags": [
+          "API"
+        ],
+        "operationId": "GetAllDefaulters",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/DeviceStatus/{imei}": {
       "get": {
         "tags": [
@@ -94,11 +174,77 @@
           }
         }
       }
+    },
+    "/LockDevice/{imei}": {
+      "put": {
+        "tags": [
+          "API"
+        ],
+        "operationId": "LockDevice",
+        "parameters": [
+          {
+            "name": "imei",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/UnlockDevice/{imei}": {
+      "put": {
+        "tags": [
+          "API"
+        ],
+        "operationId": "UnlockDevice",
+        "parameters": [
+          {
+            "name": "imei",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Void"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
       "CreateCustomerDto": {
+        "required": [
+          "email",
+          "imei",
+          "name",
+          "phoneNumber"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -128,6 +274,38 @@
           "numberOfRepaymentMonths": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
