@@ -31,7 +31,8 @@ builder.Services.AddScoped<ILoanJobService, LoanJobService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:3000")
+        policy => policy.WithOrigins("http://localhost:3000",               // local dev
+            "https://credit-frontend.onrender.com")
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
