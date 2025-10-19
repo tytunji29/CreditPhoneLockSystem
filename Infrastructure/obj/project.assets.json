@@ -2815,32 +2815,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP Elitebook 840 G2\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/elvisonobo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Infrastructure/Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\HP Elitebook 840 G2\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP Elitebook 840 G2\\Desktop\\TY\\CreditPhoneLockSystem\\Infrastructure\\obj\\",
+      "projectPath": "/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Infrastructure/Infrastructure.csproj",
+      "packagesPath": "/Users/elvisonobo/.nuget/packages/",
+      "outputPath": "/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Infrastructure/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\HP Elitebook 840 G2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/elvisonobo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2859,7 +2851,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -2902,7 +2894,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

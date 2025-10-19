@@ -1,16 +1,32 @@
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\bin\Debug\net9.0\Domain.deps.json
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\bin\Debug\net9.0\Domain.dll
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\bin\Debug\net9.0\Domain.pdb
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.sourcelink.json
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.dll
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\refint\Domain.dll
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.pdb
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\ref\Domain.dll
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\bin\Debug\net9.0\Infrastructure.dll
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\bin\Debug\net9.0\Infrastructure.pdb
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
-C:\Users\HP Elitebook 840 G2\Desktop\TY\CreditPhoneLockSystem\Domain\obj\Debug\net9.0\Domain.csproj.Up2Date
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Domain.deps.json
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Domain.dll
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Domain.pdb
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.AssemblyInfoInputs.cache
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.AssemblyInfo.cs
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.csproj.CoreCompileInputs.cache
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.sourcelink.json
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.dll
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/refint/Domain.dll
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.pdb
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/ref/Domain.dll
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Infrastructure.dll
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Infrastructure.pdb
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.csproj.AssemblyReference.cache
+C:/Users/HP Elitebook 840 G2/Desktop/TY/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.csproj.Up2Date
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Domain.deps.json
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Domain.dll
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Domain.pdb
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Infrastructure.dll
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/bin/Debug/net9.0/Infrastructure.pdb
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.csproj.AssemblyReference.cache
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.AssemblyInfoInputs.cache
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.AssemblyInfo.cs
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.csproj.CoreCompileInputs.cache
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.sourcelink.json
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.csproj.Up2Date
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.dll
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/refint/Domain.dll
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/Domain.pdb
+/Users/elvisonobo/Documents/Ty/ME/CreditPhoneLockSystem/Domain/obj/Debug/net9.0/ref/Domain.dll

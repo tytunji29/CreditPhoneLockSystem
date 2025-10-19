@@ -46,7 +46,7 @@
         "runtime": {
           "lib/netcoreapp3.0/Hangfire.AspNetCore.dll": {
             "assemblyVersion": "1.8.21.0",
-            "fileVersion": "1.8.21.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -57,7 +57,7 @@
         "runtime": {
           "lib/netstandard2.0/Hangfire.Core.dll": {
             "assemblyVersion": "1.8.21.0",
-            "fileVersion": "1.8.21.0"
+            "fileVersion": "0.0.0.0"
           }
         },
         "resources": {
@@ -115,7 +115,7 @@
         "runtime": {
           "lib/netstandard2.1/Hangfire.NetCore.dll": {
             "assemblyVersion": "1.8.21.0",
-            "fileVersion": "1.8.21.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -140,7 +140,7 @@
         "runtime": {
           "lib/netstandard2.0/Hangfire.SqlServer.dll": {
             "assemblyVersion": "1.8.21.0",
-            "fileVersion": "1.8.21.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -911,14 +911,7 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
-      "System.Text.Json/9.0.8": {
-        "runtime": {
-          "lib/net9.0/System.Text.Json.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.825.36511"
-          }
-        }
-      },
+      "System.Text.Json/9.0.8": {},
       "System.Threading.Channels/7.0.0": {},
       "Domain/1.0.0": {
         "dependencies": {

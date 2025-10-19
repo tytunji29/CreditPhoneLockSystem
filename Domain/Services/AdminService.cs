@@ -63,6 +63,7 @@ public class AdminService : IAdminService
         }
         catch (Exception ex)
         {
+            await FileLogger.WriteLogAsync(ex.InnerException?.Message ?? ex.Message);
             return new ReturnObject
             {
                 Status = false,
@@ -111,6 +112,7 @@ public class AdminService : IAdminService
         }
         catch (Exception ex)
         {
+            await FileLogger.WriteLogAsync(ex.InnerException?.Message ?? ex.Message);
             return new ReturnObject
             {
                 Status = false,

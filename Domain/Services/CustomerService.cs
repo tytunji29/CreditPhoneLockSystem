@@ -109,10 +109,11 @@ public class CustomerService : ICustomerService
             };
             return new ReturnObject { Data = rec, Message = "Customer created successfully", Status = true };
         }
-        catch
+        catch(Exception ex)
         {
             await transaction.RollbackAsync();
-            return new ReturnObject { Data = null, Message = "An Error Occured", Status = false };
+            await FileLogger.WriteLogAsync(ex.InnerException?.Message ?? ex.Message);
+            return new ReturnObject { Data = null, Message = $"An Error Occured {ex.Message}", Status = false };
         }
     }
 
