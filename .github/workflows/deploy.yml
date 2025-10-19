@@ -16,11 +16,17 @@ jobs:
 
       - name: 🧪 Build Docker image for validation
         run: |
+          echo "Building Docker image to verify syntax..."
           docker build -t creditphonelocksystem -f Dockerfile .
           docker images | grep creditphonelocksystem
 
       - name: 🚀 Trigger Render deployment
-        run: |
-          curl -X POST "$RENDER_DEPLOY_HOOK_URL"
         env:
-          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          CPLS: ${{ secrets.CPLS }}
+        run: |
+          echo "Triggering Render deployment..."
+          if [ -z "$CPLS" ]; then
+            echo "❌ CPLS secret is empty. Please check your GitHub Secrets."
+            exit 1
+          fi
+          curl -X POST "$CPLS" --fail
