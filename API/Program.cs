@@ -5,6 +5,7 @@ using Hangfire.PostgreSql;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Data.AppDbContext;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -71,7 +72,7 @@ app.MapPost("/AddAdminUser", async (RegisterDto dto, IAdminService adminService)
 })
 .WithName("CreateAdminUser")
 .WithOpenApi();
-app.MapPost("/AddCustomer", async (CreateCustomerDto dto, ICustomerService customerService) =>
+app.MapPost("/AddCustomer", async ([FromForm] CreateCustomerDto dto, ICustomerService customerService) =>
 {
     var result = await customerService.CreateCustomerAsync(dto);
     if (result.Status == false)

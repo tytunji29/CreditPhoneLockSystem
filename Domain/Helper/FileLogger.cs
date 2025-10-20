@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 public static class FileLogger
 {
@@ -28,6 +29,22 @@ public static class FileLogger
         {
             // Optionally fallback to console if file write fails
             Console.WriteLine($"Logging failed: {ex.Message}");
+        }
+    }
+}
+
+public static class FileHelper
+{
+    public static async Task<string> ConvertToBase64Async(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return null;
+
+        using (var memoryStream = new MemoryStream())
+        {
+            await file.CopyToAsync(memoryStream);
+            byte[] fileBytes = memoryStream.ToArray();
+            return Convert.ToBase64String(fileBytes);
         }
     }
 }

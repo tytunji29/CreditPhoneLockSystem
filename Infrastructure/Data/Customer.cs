@@ -17,4 +17,5 @@ public class Customer
     // Navigation properties
     public required ICollection<Loan> Loans { get; set; }
     public  DeviceStatus DeviceStatus { get; set; }
+    public  CustomerFile CustomerFile { get; set; }
 }

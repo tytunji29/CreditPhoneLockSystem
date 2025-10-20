@@ -1,4 +1,6 @@
-﻿namespace Domain.Dto;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Domain.Dto;
 public class CreateCustomerDto
 {
     public required string Name { get; set; }
@@ -9,6 +11,7 @@ public class CreateCustomerDto
     public decimal AmountPaid { get; set; }
     public decimal AmountToBalance { get; set; }
     public int NumberOfRepaymentMonths { get; set; }
+    public IFormFile PassportPhoto { get; set; }    
 }
 
 public class CustomerResponseDto

@@ -22,6 +22,33 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("AdminUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordHarsh")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdminUsers");
+                });
+
             modelBuilder.Entity("Infrastructure.Data.Customer", b =>
                 {
                     b.Property<Guid>("Id")
@@ -53,6 +80,30 @@ namespace Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Infrastructure.Data.CustomerFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("File")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
+
+                    b.ToTable("CustomerFiles");
                 });
 
             modelBuilder.Entity("Infrastructure.Data.DeviceStatus", b =>
@@ -146,6 +197,17 @@ namespace Infrastructure.Migrations
                     b.ToTable("RepaymentSchedules");
                 });
 
+            modelBuilder.Entity("Infrastructure.Data.CustomerFile", b =>
+                {
+                    b.HasOne("Infrastructure.Data.Customer", "Customer")
+                        .WithOne("CustomerFile")
+                        .HasForeignKey("Infrastructure.Data.CustomerFile", "CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("Infrastructure.Data.DeviceStatus", b =>
                 {
                     b.HasOne("Infrastructure.Data.Customer", "Customer")
@@ -181,6 +243,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Infrastructure.Data.Customer", b =>
                 {
+                    b.Navigation("CustomerFile")
+                        .IsRequired();
+
                     b.Navigation("DeviceStatus")
                         .IsRequired();
 

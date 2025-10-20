@@ -22,100 +22,131 @@ public class CustomerService : ICustomerService
     {
         _unitOfWork = unitOfWork;
     }
+public async Task<ReturnObject> CreateCustomerAsync(CreateCustomerDto dto)
+{
+    using var transaction = await _unitOfWork.BeginTransactionAsync();
 
-    public async Task<ReturnObject> CreateCustomerAsync(CreateCustomerDto dto)
+    try
     {
-        using var transaction = await _unitOfWork.BeginTransactionAsync();
-        try
+        // Convert file to Base64
+        string base64String = await FileHelper.ConvertToBase64Async(dto.PassportPhoto);
+
+        // 1️⃣ Create Customer
+        var customer = new Customer
         {
-            // 1. Create Customer
-            var customer = new Customer
-            {
-                Id = Guid.NewGuid(),
-                Name = dto.Name,
-                PhoneNumber = dto.PhoneNumber,
-                Email = dto.Email,
-                IMEI = dto.IMEI,
-                CreatedAt = DateTime.UtcNow,
-                Loans = new List<Loan>() // avoid required member errors
-            };
+            Id = Guid.NewGuid(),
+            Name = dto.Name,
+            PhoneNumber = dto.PhoneNumber,
+            Email = dto.Email,
+            IMEI = dto.IMEI,
+            CreatedAt = DateTime.UtcNow,
+            Loans = new List<Loan>()
+        };
 
-            await _unitOfWork.Customers.AddAsync(customer);
+        await _unitOfWork.Customers.AddAsync(customer);
 
-            // 2. Initialize Device Status
-            var deviceStatus = new DeviceStatus
-            {
-                Id = Guid.NewGuid(),
-                CustomerId = customer.Id,
-                IMEI = customer.IMEI,
-                IsLocked = false,
-                LastCheckedAt = DateTime.UtcNow
-            };
-            await _unitOfWork.DeviceStatuses.AddAsync(deviceStatus);
-
-            // 3. Create Loan
-            var totalAmount = dto.AmountPaid + dto.AmountToBalance;
-            var loan = new Loan
-            {
-                Id = Guid.NewGuid(),
-                CustomerId = customer.Id,
-                TotalAmount = totalAmount,
-                PaidAmount = dto.AmountPaid,
-                Balance = dto.AmountToBalance,
-                Period = dto.NumberOfRepaymentMonths,
-                Status = LoanStatus.Active, // use enum/constant
-                CreatedAt = DateTime.UtcNow,
-                RepaymentSchedules = new List<RepaymentSchedule>()
-            };
-            await _unitOfWork.Loans.AddAsync(loan);
-
-            // 4. Generate Repayment Schedules
-            var installmentAmount = dto.AmountToBalance / dto.NumberOfRepaymentMonths;
-            var repaymentSchedules = Enumerable.Range(1, dto.NumberOfRepaymentMonths)
-                .Select(i => new RepaymentSchedule
-                {
-                    Id = Guid.NewGuid(),
-                    LoanId = loan.Id,
-                    DueDate = DateTime.UtcNow.AddMonths(i),
-                    Amount = installmentAmount,
-                    IsPaid = false,
-                    Status = RepaymentStatus.Pending
-                }).ToList();
-
-            await _unitOfWork.RepaymentSchedules.AddListAsync(repaymentSchedules);
-
-            // 5. Commit transaction
-            await _unitOfWork.SaveChangesAsync();
-            await transaction.CommitAsync();
-
-            // 6. Return Customer DTO
-            var rec = new CustomerResponseDto
-            {
-                Id = customer.Id,
-                Name = customer.Name,
-                PhoneNumber = customer.PhoneNumber,
-                Email = customer.Email,
-                IMEI = customer.IMEI,
-                CreatedAt = customer.CreatedAt,
-                Repay = repaymentSchedules.Select(rs => new RepaymentScheduleResponseDto
-                {
-                    Id = rs.Id,
-                    DueDate = rs.DueDate,
-                    Amount = rs.Amount,
-                    LoanId = rs.LoanId,
-                    CreatedAt = loan.CreatedAt,
-                    Status = rs.Status
-                }).ToList()
-            };
-            return new ReturnObject { Data = rec, Message = "Customer created successfully", Status = true };
-        }
-        catch(Exception ex)
+        // 2️⃣ Save Uploaded File
+        var customerFile = new CustomerFile
         {
-            await transaction.RollbackAsync();
-            await FileLogger.WriteLogAsync(ex.InnerException?.Message ?? ex.Message);
-            return new ReturnObject { Data = null, Message = $"An Error Occured {ex.Message}", Status = false };
-        }
+            Id = Guid.NewGuid(),
+            CustomerId = customer.Id,
+            File = base64String,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await _unitOfWork.CustomerFiles.AddAsync(customerFile);
+
+        // 3️⃣ Initialize Device Status
+        var deviceStatus = new DeviceStatus
+        {
+            Id = Guid.NewGuid(),
+            CustomerId = customer.Id,
+            IMEI = customer.IMEI,
+            IsLocked = false,
+            LastCheckedAt = DateTime.UtcNow
+        };
+
+        await _unitOfWork.DeviceStatuses.AddAsync(deviceStatus);
+
+        // 4️⃣ Create Loan
+        decimal totalAmount = dto.AmountPaid + dto.AmountToBalance;
+
+        var loan = new Loan
+        {
+            Id = Guid.NewGuid(),
+            CustomerId = customer.Id,
+            TotalAmount = totalAmount,
+            PaidAmount = dto.AmountPaid,
+            Balance = dto.AmountToBalance,
+            Period = dto.NumberOfRepaymentMonths,
+            Status = LoanStatus.Active,
+            CreatedAt = DateTime.UtcNow,
+            RepaymentSchedules = new List<RepaymentSchedule>()
+        };
+
+        await _unitOfWork.Loans.AddAsync(loan);
+
+        // 5️⃣ Generate Repayment Schedules
+        decimal installmentAmount = dto.AmountToBalance / dto.NumberOfRepaymentMonths;
+
+        var repaymentSchedules = Enumerable.Range(1, dto.NumberOfRepaymentMonths)
+            .Select(i => new RepaymentSchedule
+            {
+                Id = Guid.NewGuid(),
+                LoanId = loan.Id,
+                DueDate = DateTime.UtcNow.AddMonths(i),
+                Amount = installmentAmount,
+                IsPaid = false,
+                Status = RepaymentStatus.Pending
+            })
+            .ToList();
+
+        await _unitOfWork.RepaymentSchedules.AddListAsync(repaymentSchedules);
+
+        // 6️⃣ Commit All Changes
+        await _unitOfWork.SaveChangesAsync();
+        await transaction.CommitAsync();
+
+        // 7️⃣ Prepare Response
+        var response = new CustomerResponseDto
+        {
+            Id = customer.Id,
+            Name = customer.Name,
+            PhoneNumber = customer.PhoneNumber,
+            Email = customer.Email,
+            IMEI = customer.IMEI,
+            CreatedAt = customer.CreatedAt,
+            Repay = repaymentSchedules.Select(rs => new RepaymentScheduleResponseDto
+            {
+                Id = rs.Id,
+                LoanId = rs.LoanId,
+                DueDate = rs.DueDate,
+                Amount = rs.Amount,
+                CreatedAt = loan.CreatedAt,
+                Status = rs.Status
+            }).ToList()
+        };
+
+        return new ReturnObject
+        {
+            Data = response,
+            Message = "Customer created successfully.",
+            Status = true
+        };
     }
+    catch (Exception ex)
+    {
+        await transaction.RollbackAsync();
+        await FileLogger.WriteLogAsync(ex.InnerException?.Message ?? ex.Message);
+
+        return new ReturnObject
+        {
+            Data = null,
+            Message = $"An error occurred: {ex.Message}",
+            Status = false
+        };
+    }
+}
 
     public async Task<ReturnObject> FlagStatusByIMEI(string imei, int source)
     {
