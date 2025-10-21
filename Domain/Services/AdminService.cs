@@ -55,11 +55,17 @@ public class AdminService : IAdminService
 
             await _unitOfWork.AdminUsers.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
+
+            string token = GenerateJwtToken(user);
+
             return new ReturnObject
             {
                 Status = true,
                 Message = "Admin registered successfully",
-                Data = new { user.Id, user.FullName, user.Email }
+                Data = new { user.Id, user.FullName, user.Email,
+                    Token = token,
+                    user.Role
+                }
             };
         }
         catch (Exception ex)
