@@ -11,8 +11,8 @@ namespace Infrastructure.Data.AppDbContext;
         public DbSet<Loan> Loans { get; set; }
         public DbSet<AdminUser> AdminUsers { get; set; }
         public DbSet<RepaymentSchedule> RepaymentSchedules { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<DeviceStatus> DeviceStatuses { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -34,7 +34,7 @@ public interface IUnitOfWork : IDisposable
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
-        Customers = new CustomerRepository(_context);
+            Customers = new CustomerRepository(_context);
             CustomerFiles = new GenericRepository<CustomerFile>(_context);
             Loans = new GenericRepository<Loan>(_context);
             AdminUsers = new GenericRepository<AdminUser>(_context);

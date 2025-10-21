@@ -11,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 
 public interface IAdminService
 {
-    Task<ReturnObject> RegisterAsync(string fullName, string email, string password);
+    Task<ReturnObject> RegisterAsync(string fullName, string email, string password, bool isSuperAdmin);
     Task<ReturnObject> LoginAsync(string email, string password);
 }
 
@@ -26,7 +26,7 @@ public class AdminService : IAdminService
         _config = config;
     }
 
-    public async Task<ReturnObject> RegisterAsync(string fullName, string email, string password)
+    public async Task<ReturnObject> RegisterAsync(string fullName, string email, string password, bool isSuperAdmin)
     {
         try
         {
@@ -47,9 +47,10 @@ public class AdminService : IAdminService
             {
                 Id = Guid.NewGuid(),
                 FullName = fullName,
+                IsSuperAdmin = isSuperAdmin,
                 Email = email,
                 PasswordSalt = salt,
-                PasswordHarsh = hash
+                PasswordHash = hash
             };
 
             await _unitOfWork.AdminUsers.AddAsync(user);
@@ -93,10 +94,15 @@ public class AdminService : IAdminService
                 hmac.ComputeHash(Encoding.UTF8.GetBytes(password))
             );
 
-            if (hash != user.PasswordHarsh)
-                return null;
+            if (hash != user.PasswordHash)
+                return new ReturnObject
+                {
+                    Status = false,
+                    Message = "Invalid email or password"
+                };
 
             string token = GenerateJwtToken(user);
+
             return new ReturnObject
             {
                 Status = true,
@@ -106,7 +112,8 @@ public class AdminService : IAdminService
                     user.Id,
                     user.FullName,
                     user.Email,
-                    Token = token
+                    Token = token,
+                    user.Role
                 }
             };
         }

@@ -65,12 +65,21 @@ app.MapPost("/LoginUser", async (LoginDto dto, IAdminService adminService) =>
 .WithOpenApi();
 app.MapPost("/AddAdminUser", async (RegisterDto dto, IAdminService adminService) =>
 {
-    var result = await adminService.RegisterAsync(dto.FullName, dto.Email, dto.Password);
+    var result = await adminService.RegisterAsync(dto.FullName, dto.Email, dto.Password,false);
     if (result.Status == false)
         return Results.InternalServerError(result.Message);
     return Results.Ok(result);
 })
 .WithName("CreateAdminUser")
+.WithOpenApi();
+app.MapPost("/AddSuperAdminUser", async (RegisterDto dto, IAdminService adminService) =>
+{
+    var result = await adminService.RegisterAsync(dto.FullName, dto.Email, dto.Password,true);
+    if (result.Status == false)
+        return Results.InternalServerError(result.Message);
+    return Results.Ok(result);
+})
+.WithName("CreateSuperAdminUser")
 .WithOpenApi();
 app.MapPost("/AddCustomer", async ([FromForm] CreateCustomerDto dto, ICustomerService customerService) =>
 {

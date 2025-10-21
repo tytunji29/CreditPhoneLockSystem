@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251020150852_AddNName")]
+    [Migration("20251021080148_AddNName")]
     partial class AddNName
     {
         /// <inheritdoc />
@@ -39,7 +39,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PasswordHarsh")
+                    b.Property<bool>("IsSuperAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -47,7 +50,12 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("AdminUsers");
                 });
@@ -200,6 +208,39 @@ namespace Infrastructure.Migrations
                     b.ToTable("RepaymentSchedules");
                 });
 
+            modelBuilder.Entity("Infrastructure.Data.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
+                });
+
+            modelBuilder.Entity("AdminUser", b =>
+                {
+                    b.HasOne("Infrastructure.Data.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("Infrastructure.Data.CustomerFile", b =>
                 {
                     b.HasOne("Infrastructure.Data.Customer", "Customer")
@@ -258,6 +299,11 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Infrastructure.Data.Loan", b =>
                 {
                     b.Navigation("RepaymentSchedules");
+                });
+
+            modelBuilder.Entity("Infrastructure.Data.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -288,18 +288,4 @@ public async Task<ReturnObject> CreateCustomerAsync(CreateCustomerDto dto)
         };
     }
 
-    public static class LoanStatus
-    {
-        public const string Active = "Active";
-        public const string Completed = "Completed";
-        public const string Locked = "Locked";
-    }
-
-    public static class RepaymentStatus
-    {
-        public const string Pending = "Pending";
-        public const string Paid = "Paid";
-        public const string Overdue = "Overdue";
-    }
-
 }
