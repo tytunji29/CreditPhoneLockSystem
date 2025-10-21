@@ -17,6 +17,7 @@ public interface IUnitOfWork : IDisposable
     IGenericRepository<RepaymentSchedule> RepaymentSchedules { get; }
     IGenericRepository<DeviceStatus> DeviceStatuses { get; }
      IGenericRepository<CustomerFile> CustomerFiles { get; }
+     IGenericRepository<Role> Roles { get; }
     Task<IDbContextTransaction> BeginTransactionAsync();
     Task<int> SaveChangesAsync();
 }
@@ -31,6 +32,7 @@ public interface IUnitOfWork : IDisposable
         public IGenericRepository<RepaymentSchedule> RepaymentSchedules { get; }
         public IGenericRepository<DeviceStatus> DeviceStatuses { get; }
           public IGenericRepository<CustomerFile> CustomerFiles { get; }
+          public IGenericRepository<Role> Roles { get; }
         public UnitOfWork(AppDbContext context)
         {
             _context = context;

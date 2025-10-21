@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Domain;
 using Infrastructure;
+using Infrastructure.Data;
 using Infrastructure.Data.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -42,7 +43,23 @@ public class AdminService : IAdminService
             var hash = Convert.ToBase64String(
                 hmac.ComputeHash(Encoding.UTF8.GetBytes(password))
             );
-
+            string rolename = isSuperAdmin ? "SuperAdmin" : "Admin";
+            var existingRole = await _unitOfWork.Roles.GetByPropertyAsync(u => u.Name == rolename);
+            Role role;
+            if (existingRole == null)
+            {
+                role = new Role
+                {
+                    Id = Guid.NewGuid(),
+                    Name = rolename,
+                    Description = $"This Is For {rolename}"
+                };
+                await _unitOfWork.Roles.AddAsync(role);
+            }
+            else
+            {
+                role = existingRole;
+            }
             var user = new AdminUser
             {
                 Id = Guid.NewGuid(),
@@ -50,9 +67,9 @@ public class AdminService : IAdminService
                 IsSuperAdmin = isSuperAdmin,
                 Email = email,
                 PasswordSalt = salt,
-                PasswordHash = hash
+                PasswordHash = hash,
+                RoleId = role.Id
             };
-
             await _unitOfWork.AdminUsers.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
@@ -62,7 +79,11 @@ public class AdminService : IAdminService
             {
                 Status = true,
                 Message = "Admin registered successfully",
-                Data = new { user.Id, user.FullName, user.Email,
+                Data = new
+                {
+                    user.Id,
+                    user.FullName,
+                    user.Email,
                     Token = token,
                     user.Role
                 }
