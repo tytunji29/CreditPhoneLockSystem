@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Infrastructure.Data;
 
 public class Role
@@ -6,7 +8,6 @@ public class Role
     public required string Name { get; set; }
     public required string Description { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-      // Navigation for all users under this role
-        public ICollection<AdminUser> Users { get; set; } = new List<AdminUser>();
+    [JsonIgnore]
+    public ICollection<AdminUser> Users { get; set; } = new List<AdminUser>();
     }

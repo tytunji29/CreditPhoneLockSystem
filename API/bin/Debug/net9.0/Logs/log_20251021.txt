@@ -4,3 +4,31 @@ Message: 23503: insert or update on table "AdminUsers" violates foreign key cons
 
 DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
 
+======================================
+Timestamp: 2025-10-21 20:33:03
+Message: Object reference not set to an instance of an object.
+
+======================================
+Timestamp: 2025-10-21 20:34:21
+Message: Object reference not set to an instance of an object.
+
+======================================
+Timestamp: 2025-10-21 20:35:03
+Message: Object reference not set to an instance of an object.
+
+======================================
+Timestamp: 2025-10-21 20:37:39
+Message: Object reference not set to an instance of an object.
+
+======================================
+Timestamp: 2025-10-21 20:47:27
+Message: Email already exists
+
+======================================
+Timestamp: 2025-10-21 20:54:29
+Message: Email already exists
+
+======================================
+Timestamp: 2025-10-21 21:45:16
+Message: Email already exists
+

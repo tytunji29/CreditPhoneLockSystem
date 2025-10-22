@@ -74,19 +74,20 @@ public class AdminService : IAdminService
             await _unitOfWork.SaveChangesAsync();
 
             string token = GenerateJwtToken(user);
-
+ // ✅ Only return clean, necessary fields
+        var userDto = new
+        {
+             userId=user.Id,
+                    fullName=user.FullName,
+                    email=user.Email,
+                    Token = token,
+                    userRole=user.Role.Name
+        };
             return new ReturnObject
             {
                 Status = true,
                 Message = "Admin registered successfully",
-                Data = new
-                {
-                    user.Id,
-                    user.FullName,
-                    user.Email,
-                    Token = token,
-                    user.Role
-                }
+                Data = userDto
             };
         }
         catch (Exception ex)

@@ -40,6 +40,7 @@ public interface IUnitOfWork : IDisposable
             CustomerFiles = new GenericRepository<CustomerFile>(_context);
             Loans = new GenericRepository<Loan>(_context);
             AdminUsers = new GenericRepository<AdminUser>(_context);
+            Roles = new GenericRepository<Role>(_context);
             RepaymentSchedules = new GenericRepository<RepaymentSchedule>(_context);
             DeviceStatuses = new GenericRepository<DeviceStatus>(_context);
         }
